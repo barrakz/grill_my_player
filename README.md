@@ -1,3 +1,35 @@
+
+# Usefull git commands
+Get updated data from branch
+```
+git pull origin master
+```
+
+Create a new branch from branch you are on
+```
+git checkout -b new-branch
+```
+
+Add ALL files to staging area (before commit)
+```
+git add .
+```
+
+Add specific file to staging area (before commit)
+```
+git add file1
+```
+
+Commit change and write commit message
+```
+git commit -m "This is my new commit message"
+```
+
+Push your commited changes to branch you are on
+```
+git push origin head
+```
+
 # How to, all python django stuff
 To go inside virtual env
 ```
