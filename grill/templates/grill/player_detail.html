@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+    <p>PLAYER NAME: {{ player.name }}</p>
+    <p>PLAYER LAST NAME: {{ player.last_name }}</p>
+
+
+
+
+    <p><a href="{% url 'grill:players-list' %}">Go to players list!</a></p>
+
+    <p><a href="{% url 'grill:matches-list' %}">Go to matches page!</a></p>
+{% endblock %}
