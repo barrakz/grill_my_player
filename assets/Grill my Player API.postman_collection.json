@@ -7,19 +7,19 @@
 	},
 	"item": [
 		{
-			"name": "Question list",
+			"name": "Players list",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8000/api/questions/",
+					"raw": "localhost:8000/api/players/",
 					"host": [
 						"localhost"
 					],
 					"port": "8000",
 					"path": [
 						"api",
-						"questions",
+						"players",
 						""
 					]
 				}
@@ -27,20 +27,20 @@
 			"response": []
 		},
 		{
-			"name": "Question Detail",
+			"name": "Player Detail",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8000/api/questions/4/",
+					"raw": "localhost:8000/api/players/1/",
 					"host": [
 						"localhost"
 					],
 					"port": "8000",
 					"path": [
 						"api",
-						"questions",
-						"4",
+						"players",
+						"1",
 						""
 					]
 				}
@@ -48,13 +48,13 @@
 			"response": []
 		},
 		{
-			"name": "Question",
+			"name": "Add Player",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"question_text\": \"This is my question\",\n    \"poll_id\": 1\n}",
+					"raw": "{\n    \"name\": \"Someone\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -62,14 +62,14 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8000/api/questions/",
+					"raw": "localhost:8000/api/players/",
 					"host": [
 						"localhost"
 					],
 					"port": "8000",
 					"path": [
 						"api",
-						"questions",
+						"players",
 						""
 					]
 				}
@@ -77,20 +77,20 @@
 			"response": []
 		},
 		{
-			"name": "Question",
+			"name": "Delete Player",
 			"request": {
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "localhost:8000/api/questions/5/",
+					"raw": "localhost:8000/api/players/1/",
 					"host": [
 						"localhost"
 					],
 					"port": "8000",
 					"path": [
 						"api",
-						"questions",
-						"5",
+						"players",
+						"1",
 						""
 					]
 				}
@@ -98,168 +98,29 @@
 			"response": []
 		},
 		{
-			"name": "Question",
+			"name": "Update Player",
 			"request": {
 				"method": "PUT",
 				"header": [],
 				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "question_text",
-							"value": "some text",
-							"type": "text"
-						},
-						{
-							"key": "poll_id",
-							"value": "2",
-							"type": "text"
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Nowy\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
 						}
-					]
+					}
 				},
 				"url": {
-					"raw": "localhost:8000/api/questions/7/",
+					"raw": "localhost:8000/api/players/1/",
 					"host": [
 						"localhost"
 					],
 					"port": "8000",
 					"path": [
 						"api",
-						"questions",
-						"7",
-						""
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Answer list",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "localhost:8000/api/answers/",
-					"host": [
-						"localhost"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"answers",
-						""
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Answer Detail",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "localhost:8000/api/answers/5/",
-					"host": [
-						"localhost"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"answers",
-						"5",
-						""
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Answer",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "answer_text",
-							"value": "this is text",
-							"type": "text"
-						},
-						{
-							"key": "question_id",
-							"value": "1",
-							"type": "text"
-						}
-					]
-				},
-				"url": {
-					"raw": "localhost:8000/api/answers/",
-					"host": [
-						"localhost"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"answers",
-						""
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Answer",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "localhost:8000/api/answers/10/",
-					"host": [
-						"localhost"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"answers",
-						"10",
-						""
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Answer",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "answer_text",
-							"value": "This is changed text from API",
-							"type": "text"
-						},
-						{
-							"key": "question_id",
-							"value": "1",
-							"type": "text"
-						}
-					]
-				},
-				"url": {
-					"raw": "localhost:8000/api/answers/9/",
-					"host": [
-						"localhost"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"answers",
-						"9",
+						"players",
+						"1",
 						""
 					]
 				}
