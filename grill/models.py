@@ -10,19 +10,19 @@ class Match(models.Model):
         return f"{self.teams}"
 
 
-class Team(models.Model):
-    name = models.CharField(max_length=50)
-    match = models.ForeignKey(Match, on_delete=models.CASCADE, related_name="mainmatch", blank=True, null=True)
-
-    def __str__(self):
-        return f"{self.name}"
+# class Team(models.Model):
+#     name = models.CharField(max_length=50)
+#     match = models.ForeignKey(Match, on_delete=models.CASCADE, related_name="mainmatch", blank=True, null=True)
+#
+#     def __str__(self):
+#         return f"{self.name}"
 
 
 class Player(models.Model):
     name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     birth_date = models.IntegerField()
-    team = models.ForeignKey(Team, on_delete=models.CASCADE, related_name="team", blank=True, null=True)
+    # team = models.ForeignKey(Team, on_delete=models.CASCADE, related_name="team", blank=True, null=True)
     match = models.ForeignKey(Match, on_delete=models.CASCADE, related_name="match", blank=True, null=True)
 
     def __str__(self):
