@@ -15,10 +15,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework.urlpatterns import format_suffix_patterns
+
+from grill import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("grill/", include("grill.urls_class")),
+    path("players-api/", views.players_list),
+    path("players-api/<int:id>", views.player_detail)
 
 
 ]
+
+urlpatterns = format_suffix_patterns(urlpatterns)
+
