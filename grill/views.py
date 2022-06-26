@@ -1,10 +1,29 @@
+from django.contrib.auth import get_user_model
 from django.shortcuts import render
 from django.http import JsonResponse
 from .models import Player
-from .serializers import PlayersSerializer
+from .serializers import PlayersSerializer, UserSerializer
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from rest_framework import status
+from rest_framework import status, viewsets
+from rest_framework.generics import ListCreateAPIView
+
+from rest_framework.permissions import IsAuthenticated
+
+
+class UserViewSet(viewsets.ModelViewSet):
+    permission_classes = (IsAuthenticated,)
+    serializer_class = UserSerializer
+    queryset = get_user_model().objects.all()
+
+
+class PlayerListView(ListCreateAPIView):
+    queryset = Player.objects.all()
+    serializer_class = PlayersSerializer
+    permission_classes = (IsAuthenticated, )
+
+
+
 
 
 @api_view(['GET', 'POST'])
