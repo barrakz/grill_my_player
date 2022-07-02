@@ -25,7 +25,7 @@ class Player(models.Model):
     birth_date = models.IntegerField()
     # team = models.ForeignKey(Team, on_delete=models.CASCADE, related_name="team", blank=True, null=True)
     match = models.ManyToManyField(Match)
-    average_rating = models.FloatField(default=0)
+    # average_rating = models.FloatField(default=0)
 
     def __str__(self):
         return f"{self.name} {self.last_name}"

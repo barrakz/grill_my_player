@@ -20,10 +20,7 @@ class UserViewSet(viewsets.ModelViewSet):
 class PlayerListView(ListCreateAPIView):
     queryset = Player.objects.all()
     serializer_class = PlayersSerializer
-    permission_classes = (IsAuthenticated, )
-
-
-
+    permission_classes = (IsAuthenticated,)
 
 
 @api_view(['GET', 'POST'])
@@ -61,3 +58,5 @@ def player_detail(request, id, format=None):
     elif request.method == 'DELETE':
         player.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
