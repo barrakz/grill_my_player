@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Match(models.Model):
@@ -7,23 +8,24 @@ class Match(models.Model):
     score = models.CharField(max_length=5)
 
     def __str__(self):
-        return f"{self.teams}"
+        return f"{self.date}   {self.teams}"
 
 
-class Team(models.Model):
-    name = models.CharField(max_length=50)
-    match = models.ForeignKey(Match, on_delete=models.CASCADE, related_name="mainmatch", blank=True, null=True)
-
-    def __str__(self):
-        return f"{self.name}"
+# class Team(models.Model):
+#     name = models.CharField(max_length=50)
+#     match = models.ForeignKey(Match, on_delete=models.CASCADE, related_name="mainmatch", blank=True, null=True)
+#
+#     def __str__(self):
+#         return f"{self.name}"
 
 
 class Player(models.Model):
     name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     birth_date = models.IntegerField()
-    team = models.ForeignKey(Team, on_delete=models.CASCADE, related_name="team", blank=True, null=True)
-    match = models.ForeignKey(Match, on_delete=models.CASCADE, related_name="match", blank=True, null=True)
+    # team = models.ForeignKey(Team, on_delete=models.CASCADE, related_name="team", blank=True, null=True)
+    match = models.ManyToManyField(Match)
+    # average_rating = models.FloatField(default=0)
 
     def __str__(self):
         return f"{self.name} {self.last_name}"
@@ -44,10 +46,12 @@ class Rating(models.Model):
     ]
 
     player = models.ForeignKey(Player, on_delete=models.CASCADE, related_name="ratings", blank=True, null=True)
+    # user = models.ForeignKey(User)
     rate = models.IntegerField(choices=RATINGS)
-    comment_text = models.CharField(max_length=1000, null=True)
+    comment_text = models.TextField(max_length=1000, blank=True, null=True)
+    match = models.ForeignKey(Match, on_delete=models.CASCADE, related_name="ratings", blank=True, null=True)
 
     def __str__(self):
-        return f"{self.rate} {self.comment_text}"
+        return f"{self.player.name} {self.player.last_name} {self.match} {self.comment_text} {self.rate}"
 
 

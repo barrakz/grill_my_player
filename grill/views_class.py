@@ -1,6 +1,6 @@
 from django.views.generic import ListView, DetailView
 
-from grill.models import Match, Team, Player
+from grill.models import Match, Player
 
 
 class MatchesListView(ListView):
@@ -8,9 +8,9 @@ class MatchesListView(ListView):
     template_name = "grill/matches_list.html"
 
 
-class TeamDetailView(DetailView):
-    model = Team
-    template_name = "grill/team_detail.html"
+# class TeamDetailView(DetailView):
+#     model = Team
+#     template_name = "grill/team_detail.html"
 
 
 class PlayersListView(ListView):
