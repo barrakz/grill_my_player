@@ -24,7 +24,7 @@ from rest_framework.routers import DefaultRouter
 from grill.views import UserViewSet
 
 urlpatterns = [
-    path('players-rest/', include("grill.urls")),
+    path('models-rest/', include("grill.urls")),
     path('admin/', admin.site.urls),
     path("grill/", include("grill.urls_class")),
     path("players-api/", views.players_list),

@@ -1,8 +1,10 @@
 from django.contrib.auth import get_user_model
 from django.shortcuts import render
 from django.http import JsonResponse
-from .models import Player
-from .serializers import PlayersSerializer, UserSerializer
+from rest_framework.views import APIView
+
+from .models import Player, Match, Rating
+from .serializers import PlayersSerializer, UserSerializer, MatchesSerializer, RatingsSerializer
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status, viewsets
@@ -21,6 +23,21 @@ class PlayerListView(ListCreateAPIView):
     queryset = Player.objects.all()
     serializer_class = PlayersSerializer
     permission_classes = (IsAuthenticated,)
+
+
+class MatchesListView(ListCreateAPIView):
+    queryset = Match.objects.all()
+    serializer_class = MatchesSerializer
+    permission_classes = (IsAuthenticated,)
+
+
+class RatingsListView(ListCreateAPIView):
+    queryset = Rating.objects.all()
+    serializer_class = RatingsSerializer
+    permission_classes = (IsAuthenticated,)
+
+
+
 
 
 @api_view(['GET', 'POST'])
@@ -58,5 +75,3 @@ def player_detail(request, id, format=None):
     elif request.method == 'DELETE':
         player.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-
-
