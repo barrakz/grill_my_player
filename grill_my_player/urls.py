@@ -24,15 +24,12 @@ from rest_framework.routers import DefaultRouter
 from grill.views import UserViewSet
 
 urlpatterns = [
-    path('models-rest/', include("grill.urls")),
     path('admin/', admin.site.urls),
-    path("grill/", include("grill.urls_class")),
-    path("players-api/", views.players_list),
-    path("players-api/<int:id>", views.player_detail),
     path('api-auth/', include('rest_framework.urls')),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 
+    path('models-rest/', include("grill.urls")),
 
 ]
 

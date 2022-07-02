@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models import Avg
 
 
 class Match(models.Model):
@@ -25,13 +26,17 @@ class Player(models.Model):
     birth_date = models.IntegerField()
     # team = models.ForeignKey(Team, on_delete=models.CASCADE, related_name="team", blank=True, null=True)
     match = models.ManyToManyField(Match)
-    # average_rating = models.FloatField(default=0)
+    average_rating = models.FloatField(default=0)
+
+    def recalculate_average(self):
+        self.average_rating = self.ratings.aggregate(Avg('rate'))['rate__avg']
+        self.save(update_fields=['average_rating'])
 
     def __str__(self):
         return f"{self.name} {self.last_name}"
 
 
-class Rating(models.Model):
+class Rating(models.Model): # UserPlayerRating
     RATINGS = [
         (1, "1"),
         (2, "2"),
@@ -46,7 +51,7 @@ class Rating(models.Model):
     ]
 
     player = models.ForeignKey(Player, on_delete=models.CASCADE, related_name="ratings", blank=True, null=True)
-    # user = models.ForeignKey(User)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="ratings", blank=True, null=True)
     rate = models.IntegerField(choices=RATINGS)
     comment_text = models.TextField(max_length=1000, blank=True, null=True)
     match = models.ForeignKey(Match, on_delete=models.CASCADE, related_name="ratings", blank=True, null=True)
@@ -54,4 +59,8 @@ class Rating(models.Model):
     def __str__(self):
         return f"{self.player.name} {self.player.last_name} {self.match} {self.comment_text} {self.rate}"
 
-
+    def save(
+        self, force_insert=False, force_update=False, using=None, update_fields=None
+    ):
+        super().save(force_insert=False, force_update=False, using=None, update_fields=None)
+        self.player.recalculate_average()
