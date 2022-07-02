@@ -7,7 +7,7 @@ from .models import Player, Match, Rating
 from .serializers import PlayersSerializer, UserSerializer, MatchesSerializer, RatingsSerializer
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from rest_framework import status, viewsets
+from rest_framework import status, viewsets, generics
 from rest_framework.generics import ListCreateAPIView
 
 from rest_framework.permissions import IsAuthenticated
@@ -37,7 +37,19 @@ class RatingsListView(ListCreateAPIView):
     permission_classes = (IsAuthenticated,)
 
 
+class PlayerDetailGenerics(generics.RetrieveAPIView):
+    queryset = Player.objects.all()
+    serializer_class = PlayersSerializer
 
+
+class MatchDetailGenerics(generics.RetrieveAPIView):
+    queryset = Match.objects.all()
+    serializer_class = MatchesSerializer
+
+
+class RatingDetailGenerics(generics.RetrieveAPIView):
+    queryset = Rating.objects.all()
+    serializer_class = RatingsSerializer
 
 
 @api_view(['GET', 'POST'])
