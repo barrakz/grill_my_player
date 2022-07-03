@@ -11,19 +11,21 @@ import {useRouter} from "next/router";
 import {AuthContext} from "../contexts/auth";
 import Link from "next/link";
 
-const Login: NextPage = () => {
+const Register: NextPage = () => {
   const router = useRouter()
   const {setAccessToken, setRefreshToken} = useContext(AuthContext)
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
 
-  const onSubmit = ({username, password}: any) => {
+  const onSubmit = ({username, email, password, password2}: any) => {
     setIsLoading(true)
-    // Login the guy
-    axios.post(`/api/token/`, {
+    // Register the guy
+    axios.post(`/api/register/`, {
       username,
-      password
+      email,
+      password,
+      password2,
     }, {
       ...defaultOptions,
       baseURL: BASE_BACKEND_URL
@@ -36,15 +38,11 @@ const Login: NextPage = () => {
         // Redirect to home page
         router.push('/')
       }).catch(err => {
-        console.log(err)
-        setError(err.message)
-        setIsLoading(false)
-      })
+      console.log(err)
+      setError(err.message)
+      setIsLoading(false)
+    })
   }
-
-  useEffect(() => {
-    console.log("on mount")
-  }, [])
 
   return (
     <div className={styles.container}>
@@ -59,11 +57,23 @@ const Login: NextPage = () => {
       <main className={styles.main}>
         <div>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <label htmlFor="username">Name: </label>
-            <input type="text" id='username' {...register("username")}/>
-            <label htmlFor="password">Password: </label>
-            <input type="password" id='password' {...register("password")}/>
-            <button>Login</button>
+            <div>
+              <label htmlFor="username">Username: </label>
+              <input type="text" id='username' {...register("username")}/>
+            </div>
+            <div>
+              <label htmlFor="email">Email: </label>
+              <input type="email" id='email' {...register("email")}/>
+            </div>
+            <div>
+              <label htmlFor="password">Password: </label>
+              <input type="password" id='password' {...register("password")}/>
+            </div>
+            <div>
+              <label htmlFor="password2">Repeat Password: </label>
+              <input type="password2" id='password2' {...register("password2")}/>
+            </div>
+            <button>Register</button>
           </form>
         </div>
         <div>
@@ -73,7 +83,7 @@ const Login: NextPage = () => {
             )
           }
         </div>
-        <div>not yer registered ? <Link href={"/register"}><span style={{color: 'green', cursor: 'pointer'}}>Register</span></Link></div>
+        <div>already registered ? <Link href={"/login"}><span style={{color: 'green', cursor: 'pointer'}}>Login</span></Link></div>
       </main>
 
       <footer className={styles.footer}>
@@ -83,4 +93,4 @@ const Login: NextPage = () => {
   )
 }
 
-export default Login
+export default Register

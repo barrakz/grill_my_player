@@ -55,6 +55,7 @@ class RatingDetailGenerics(generics.RetrieveAPIView):
 
 class RegisterAPIView(APIView):
     serializer_class = UserRegisterSerializer
+    permission_classes = ()
 
     def post(self, request, format=None):
         serializer = self.serializer_class(data=request.data)
