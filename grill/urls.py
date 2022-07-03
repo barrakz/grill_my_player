@@ -18,5 +18,7 @@ urlpatterns = [
 
     path("ratings/", RatingsListView.as_view(), name="ratings"),
     path("rating-detail/<int:pk>", RatingDetailGenerics.as_view(), name="rating-detail"),
+
+
 ]
 
