@@ -3,6 +3,8 @@ from .models import Player, Match, Rating
 from django.contrib.auth import get_user_model
 from rest_framework.authtoken.models import Token
 
+User = get_user_model()
+
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -37,3 +39,39 @@ class RatingsSerializer(serializers.ModelSerializer):
         request = self.context.get('request')
         validated_data['user'] = request.user
         return super().create(validated_data)
+
+
+class UserRegisterSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(required=True)
+    password2 = serializers.CharField(required=True)
+
+    class Meta:
+        model = User
+        fields = [
+            'username',
+            'email',
+            'password',
+            'password2',
+
+        ]
+        extra_kwargs = {
+            'password': {'write_only': True},
+            'password2': {'write_only': True},
+        }
+
+    def create(self, validated_data):
+        username = validated_data.get('username')
+        email = validated_data.get('username')
+        password = validated_data.get('password')
+        password2 = validated_data.get('password2')
+
+        if password == password2:
+            user = User(username=username, email=email)
+            user.set_password(password)
+            user.save()
+            return user
+
+        else:
+            raise serializers.ValidationError({
+                'error': 'Both passwords do not match'
+            })
