@@ -3,12 +3,14 @@ import Head from 'next/head'
 import styles from '../../styles/Home.module.scss'
 import Header from "../../components/Header";
 import {useRouter} from "next/router";
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import axios from "axios";
 import {defaultOptionsWithAutorization} from "../../lib/axiosConfig";
+import {AuthContext} from "../../contexts/auth";
 
 const MatchDetail: NextPage = (props) => {
   const {query: { id }} = useRouter()
+  const {accessToken} = useContext(AuthContext)
   const [match, setMatch] = useState<any>({});
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -16,15 +18,15 @@ const MatchDetail: NextPage = (props) => {
   useEffect(() => {
     if(id) {
       setIsLoading(true);
-      axios.get(`/match-detail/${id}`, defaultOptionsWithAutorization)
+      axios.get(`/match-detail/${id}`, defaultOptionsWithAutorization(accessToken))
         .then(res => {
           setMatch(res.data)
           setIsLoading(false)
         }).catch(err => {
-        console.log(err)
-        setError(err.message)
-        setIsLoading(false)
-      })
+          console.log(err)
+          setError(err.message)
+          setIsLoading(false)
+        })
     }
   }, [id])
 

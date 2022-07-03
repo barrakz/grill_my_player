@@ -2,6 +2,7 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import styles from '../styles/Home.module.scss'
 import Link from "next/link";
+import Header from "../components/Header";
 
 const Home: NextPage = () => {
   return (
@@ -11,6 +12,8 @@ const Home: NextPage = () => {
         <meta name="description" content="Grill My Player" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
+      <Header isHome={true} />
 
       <main className={styles.main}>
         <h1>Grill My Player</h1>

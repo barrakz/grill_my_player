@@ -1,20 +1,22 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import styles from '../../styles/Home.module.scss'
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import axios from "axios";
 import {defaultOptionsWithAutorization} from "../../lib/axiosConfig";
 import Link from "next/link";
 import Header from "../../components/Header";
+import {AuthContext} from "../../contexts/auth";
 
 const MatchesRoot: NextPage = () => {
+  const {accessToken} = useContext(AuthContext)
   const [matches, setMatches] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     setIsLoading(true);
-    axios.get(`/matches`, defaultOptionsWithAutorization)
+    axios.get(`/matches`, defaultOptionsWithAutorization(accessToken))
       .then(res => {
         setMatches(res.data)
         setIsLoading(false)
