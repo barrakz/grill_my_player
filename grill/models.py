@@ -3,13 +3,9 @@ from django.contrib.auth.models import User
 from django.db.models import Avg
 
 
-class Match(models.Model):
-    teams = models.CharField(max_length=50)
-    date = models.DateField()
-    score = models.CharField(max_length=5)
 
-    def __str__(self):
-        return f"{self.date}   {self.teams}"
+
+
 
 
 # class Team(models.Model):
@@ -25,7 +21,6 @@ class Player(models.Model):
     last_name = models.CharField(max_length=50)
     birth_date = models.IntegerField()
     # team = models.ForeignKey(Team, on_delete=models.CASCADE, related_name="team", blank=True, null=True)
-    match = models.ManyToManyField(Match)
     average_rating = models.FloatField(default=0)
 
     def recalculate_average(self):
@@ -34,6 +29,16 @@ class Player(models.Model):
 
     def __str__(self):
         return f"{self.name} {self.last_name}"
+
+
+class Match(models.Model):
+    teams = models.CharField(max_length=50)
+    date = models.DateField()
+    score = models.CharField(max_length=5)
+    player = models.ManyToManyField(Player)
+
+    def __str__(self):
+        return f"{self.date}   {self.teams}"
 
 
 class Rating(models.Model): # UserPlayerRating
