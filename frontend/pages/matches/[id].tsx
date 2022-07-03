@@ -6,7 +6,6 @@ import {useRouter} from "next/router";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {defaultOptionsWithAutorization} from "../../lib/axiosConfig";
-import Link from "next/link";
 
 const MatchDetail: NextPage = (props) => {
   const {query: { id }} = useRouter()

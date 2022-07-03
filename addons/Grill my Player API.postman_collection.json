@@ -9,16 +9,34 @@
 		{
 			"name": "Players list",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "6f8ac33db25eeeed598019c6ce24b0a60c3e1710",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 6f8ac33db25eeeed598019c6ce24b0a60c3e1710",
+						"type": "text",
+						"disabled": true
+					}
+				],
 				"url": {
-					"raw": "localhost:8000/api/players/",
+					"raw": "http://localhost:8000/models-rest/players/",
+					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8000",
 					"path": [
-						"api",
+						"models-rest",
 						"players",
 						""
 					]
@@ -32,16 +50,135 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8000/api/players/1/",
+					"raw": "localhost:8000/models-rest/player-detail/1",
 					"host": [
 						"localhost"
 					],
 					"port": "8000",
 					"path": [
-						"api",
-						"players",
-						"1",
+						"models-rest",
+						"player-detail",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Matches list",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "6f8ac33db25eeeed598019c6ce24b0a60c3e1710",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8000/models-rest/matches/",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"models-rest",
+						"matches",
 						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Rating list",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "6f8ac33db25eeeed598019c6ce24b0a60c3e1710",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8000/models-rest/ratings/",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"models-rest",
+						"ratings",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Match detail",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "6f8ac33db25eeeed598019c6ce24b0a60c3e1710",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8000/models-rest/match-detail/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"models-rest",
+						"match-detail",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Rating detail",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "6f8ac33db25eeeed598019c6ce24b0a60c3e1710",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8000/models-rest/rating-detail/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"models-rest",
+						"rating-detail",
+						"1"
 					]
 				}
 			},
@@ -126,6 +263,36 @@
 				}
 			},
 			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "6f8ac33db25eeeed598019c6ce24b0a60c3e1710",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
 		}
 	]
 }

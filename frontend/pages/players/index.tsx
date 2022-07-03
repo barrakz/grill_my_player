@@ -4,7 +4,6 @@ import styles from '../../styles/Home.module.scss'
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {defaultOptionsWithAutorization} from "../../lib/axiosConfig";
-import Link from "next/link";
 import Header from "../../components/Header";
 
 const PlayersRoot: NextPage = () => {
