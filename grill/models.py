@@ -69,6 +69,3 @@ class Rating(models.Model): # UserPlayerRating
     ):
         super().save(force_insert=False, force_update=False, using=None, update_fields=None)
         self.player.recalculate_average()
-
-
-

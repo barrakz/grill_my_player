@@ -21,13 +21,16 @@ from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from grill import views
 from rest_framework.routers import DefaultRouter
 
-from grill.views import UserViewSet
+from grill.views import UserViewSet, RegisterAPIView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('api/register/', RegisterAPIView.as_view()),
+
+
 
     path('models-rest/', include("grill.urls")),
 
