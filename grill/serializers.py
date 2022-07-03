@@ -18,13 +18,13 @@ class UserSerializer(serializers.ModelSerializer):
 class PlayersSerializer(serializers.ModelSerializer):
     class Meta:
         model = Player
-        fields = ['id', 'name', 'last_name', 'birth_date', 'match', 'average_rating']
+        fields = ['id', 'name', 'last_name', 'birth_date', 'average_rating']
 
 
 class MatchesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Match
-        fields = ['id', 'teams', 'date', 'score']
+        fields = ['id', 'teams', 'date', 'score', 'player']
 
 
 class RatingsSerializer(serializers.ModelSerializer):
