@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import styles from '../styles/Home.module.scss'
-import SampleDataFromBackend from "../components/SampleDataFromBackend";
+import Link from "next/link";
 
 const Home: NextPage = () => {
   return (
@@ -13,7 +13,15 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <SampleDataFromBackend />
+        <h1>Grill My Player</h1>
+        <ul>
+          <li>
+            <Link href={'/players'}>Players</Link>
+          </li>
+          <li>
+            <Link href={'/matches'}>Matches</Link>
+          </li>
+        </ul>
       </main>
 
       <footer className={styles.footer}>
