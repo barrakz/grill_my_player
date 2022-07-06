@@ -3,24 +3,10 @@ from django.contrib.auth.models import User
 from django.db.models import Avg
 
 
-
-
-
-
-
-# class Team(models.Model):
-#     name = models.CharField(max_length=50)
-#     match = models.ForeignKey(Match, on_delete=models.CASCADE, related_name="mainmatch", blank=True, null=True)
-#
-#     def __str__(self):
-#         return f"{self.name}"
-
-
 class Player(models.Model):
     name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     birth_date = models.IntegerField()
-    # team = models.ForeignKey(Team, on_delete=models.CASCADE, related_name="team", blank=True, null=True)
     average_rating = models.FloatField(default=0)
 
     def recalculate_average(self):
@@ -41,7 +27,7 @@ class Match(models.Model):
         return f"{self.date}   {self.teams}"
 
 
-class Rating(models.Model): # UserPlayerRating
+class Rating(models.Model):  # UserPlayerRating
     RATINGS = [
         (1, "1"),
         (2, "2"),
@@ -65,7 +51,7 @@ class Rating(models.Model): # UserPlayerRating
         return f"{self.player.name} {self.player.last_name} {self.match} {self.comment_text} {self.rate}"
 
     def save(
-        self, force_insert=False, force_update=False, using=None, update_fields=None
+            self, force_insert=False, force_update=False, using=None, update_fields=None
     ):
         super().save(force_insert=False, force_update=False, using=None, update_fields=None)
         self.player.recalculate_average()
