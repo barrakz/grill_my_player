@@ -66,7 +66,7 @@ class UserRegisterSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         username = validated_data.get('username')
-        email = validated_data.get('username')
+        email = validated_data.get('email')
         password = validated_data.get('password')
         password2 = validated_data.get('password2')
 
