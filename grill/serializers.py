@@ -1,4 +1,7 @@
+from django.core.validators import EmailValidator
 from rest_framework import serializers
+from rest_framework.validators import UniqueValidator
+
 from .models import Player, Match, Rating
 from django.contrib.auth import get_user_model
 from rest_framework.authtoken.models import Token
@@ -44,6 +47,8 @@ class RatingsSerializer(serializers.ModelSerializer):
 class UserRegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(required=True)
     password2 = serializers.CharField(required=True)
+    email = serializers.EmailField(
+        validators=[UniqueValidator(queryset=User.objects.all())])
 
     class Meta:
         model = User
@@ -56,7 +61,7 @@ class UserRegisterSerializer(serializers.ModelSerializer):
         ]
         extra_kwargs = {
             'password': {'write_only': True},
-            'password2': {'write_only': True},
+            'password2': {'write_only': True}
         }
 
     def create(self, validated_data):
@@ -64,6 +69,11 @@ class UserRegisterSerializer(serializers.ModelSerializer):
         email = validated_data.get('username')
         password = validated_data.get('password')
         password2 = validated_data.get('password2')
+
+        if len(username) < 3:
+            raise serializers.ValidationError({
+                'error': 'username is too short'
+            })
 
         if password == password2:
             user = User(username=username, email=email)

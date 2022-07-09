@@ -17,6 +17,9 @@ class Player(models.Model):
         return f"{self.name} {self.last_name}"
 
 
+# class meta (unique together validator)
+
+
 class Match(models.Model):
     teams = models.CharField(max_length=50)
     date = models.DateField()

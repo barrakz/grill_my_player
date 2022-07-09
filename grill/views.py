@@ -4,18 +4,19 @@ from django.http import JsonResponse
 from rest_framework.views import APIView
 
 from .models import Player, Match, Rating
+from .permissions import IsAdminUserOrReadOnly
 from .serializers import PlayersSerializer, UserSerializer, MatchesSerializer, RatingsSerializer, UserRegisterSerializer
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status, viewsets, generics
 from rest_framework.generics import ListCreateAPIView
 
-from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.permissions import IsAuthenticated, AllowAny, IsAuthenticatedOrReadOnly, IsAdminUser
 from rest_framework_simplejwt.tokens import RefreshToken
 
 
 class UserViewSet(viewsets.ModelViewSet):
-    permission_classes = (AllowAny,)
+    permission_classes = (IsAuthenticatedOrReadOnly,)
     serializer_class = UserSerializer
     queryset = get_user_model().objects.all()
 
@@ -23,34 +24,37 @@ class UserViewSet(viewsets.ModelViewSet):
 class PlayerListView(ListCreateAPIView):
     queryset = Player.objects.all()
     serializer_class = PlayersSerializer
-    permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAdminUserOrReadOnly, )
 
 
 class MatchesListView(ListCreateAPIView):
     queryset = Match.objects.all()
     serializer_class = MatchesSerializer
-    permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAdminUserOrReadOnly, )
 
 
 class RatingsListView(ListCreateAPIView):
     queryset = Rating.objects.all()
     serializer_class = RatingsSerializer
-    permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticatedOrReadOnly,)
 
 
 class PlayerDetailGenerics(generics.RetrieveAPIView):
     queryset = Player.objects.all()
     serializer_class = PlayersSerializer
+    permission_classes = (IsAdminUserOrReadOnly, )
 
 
 class MatchDetailGenerics(generics.RetrieveAPIView):
     queryset = Match.objects.all()
     serializer_class = MatchesSerializer
+    permission_classes = (IsAdminUserOrReadOnly, )
 
 
 class RatingDetailGenerics(generics.RetrieveAPIView):
     queryset = Rating.objects.all()
     serializer_class = RatingsSerializer
+    permission_classes = (IsAdminUserOrReadOnly, )
 
 
 class RegisterAPIView(APIView):
