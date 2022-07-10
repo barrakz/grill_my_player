@@ -57,8 +57,8 @@ MIDDLEWARE = [
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
-    'https://grill-my-player.herokuapp.com/',
-    'https://grill-my-player.vercel.app/'
+    'https://grill-my-player.herokuapp.com',
+    'https://grill-my-player.vercel.app'
 ]
 
 ROOT_URLCONF = 'grill_my_player.urls'
