@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-qb+yp%#=vj&jnnrihch=*sroo3_vh-gz0m-oeg9#f622nu3w87'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'grill-my-player.herokuapp.com', 'grill-my-player.vercel.app']
 
 
 # Application definition
@@ -56,7 +56,9 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    'http://localhost:3000'
+    'http://localhost:3000',
+    'https://grill-my-player.herokuapp.com/',
+    'https://grill-my-player.vercel.app/'
 ]
 
 ROOT_URLCONF = 'grill_my_player.urls'
