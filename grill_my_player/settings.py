@@ -92,6 +92,8 @@ WSGI_APPLICATION = 'grill_my_player.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
+import dj_database_url
+DATABASES = {'default': dj_database_url.config()}
 
 
 # DATABASES = {
