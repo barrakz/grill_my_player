@@ -9,7 +9,7 @@ export const defaultOptions: any = {
   responseType: 'json'
 }
 
-export const defaultOptionsWithAutorization = (token: string): any =>  {
+export const defaultOptionsWithAutorization: any = (token: string): any =>  {
   return {
     ...defaultOptions,
     headers: {
