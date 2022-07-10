@@ -7,6 +7,7 @@ import {defaultOptionsWithAutorization} from "../../lib/axiosConfig";
 import Header from "../../components/Header";
 import {AuthContext} from "../../contexts/auth";
 import Link from "next/link";
+import {toast} from "react-toastify";
 
 const PlayersRoot: NextPage = () => {
   const {accessToken} = useContext(AuthContext)
@@ -23,6 +24,7 @@ const PlayersRoot: NextPage = () => {
       }).catch(err => {
         console.log(err)
         setError(err.message)
+        toast.error(err.message)
         setIsLoading(false)
     })
   }, [])
@@ -43,12 +45,12 @@ const PlayersRoot: NextPage = () => {
               <h2>{error}</h2>
             ) : (
               (
-                <ul>
+                <ul className={styles.playersList}>
                   {players.map(player => (
-                    <li key={player.id}>
+                    <li key={player.id} className={styles.player}>
                       <Link href={`/players/${player.id}`}>
                         <div style={{cursor: 'pointer'}}>
-                          {player.name} {player.last_name} - avg rating: <strong>{player.average_rating}</strong>
+                          {player.name} {player.last_name} - avg rating: <strong>{player.average_rating.toFixed(2)}</strong>
                         </div>
                       </Link>
                     </li>

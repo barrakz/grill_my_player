@@ -114,3 +114,32 @@
     flex-direction: column;
   }
 }
+
+.ratingList {
+  list-style: none;
+
+  li {
+    font-size: 24px;
+    display: inline-block;
+    margin: 12px;
+    cursor: pointer;
+
+    &:hover {
+      color: #0070f3;
+    }
+  }
+}
+
+.playersList {
+  list-style: none;
+}
+
+.player {
+  margin: 12px;
+
+  &:hover {
+    color: #0070f3;
+  }
+}
+
+

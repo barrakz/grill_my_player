@@ -7,6 +7,7 @@ import {defaultOptionsWithAutorization} from "../../lib/axiosConfig";
 import Link from "next/link";
 import Header from "../../components/Header";
 import {AuthContext} from "../../contexts/auth";
+import {toast} from "react-toastify";
 
 const MatchesRoot: NextPage = () => {
   const {accessToken} = useContext(AuthContext)
@@ -23,6 +24,7 @@ const MatchesRoot: NextPage = () => {
       }).catch(err => {
         console.log(err)
         setError(err.message)
+        toast.error(err.message)
         setIsLoading(false)
     })
   }, [])

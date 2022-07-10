@@ -7,6 +7,7 @@ import {useContext, useEffect, useState} from "react";
 import axios from "axios";
 import {defaultOptionsWithAutorization} from "../../lib/axiosConfig";
 import {AuthContext} from "../../contexts/auth";
+import {toast} from "react-toastify";
 
 const PlayerDetail: NextPage = (props) => {
   const {query: { id }} = useRouter()
@@ -27,6 +28,7 @@ const PlayerDetail: NextPage = (props) => {
         }).catch(err => {
           console.log(err)
           setError(err.message)
+          toast.error(err.message)
           setIsLoading(false)
         })
     }
@@ -45,6 +47,7 @@ const PlayerDetail: NextPage = (props) => {
         }).catch(err => {
         console.log(err)
         setError(err.message)
+        toast.error(err.message)
         setIsLoading(false)
       })
     }
@@ -59,6 +62,7 @@ const PlayerDetail: NextPage = (props) => {
       }).catch(err => {
       console.log(err)
       setError(err.message)
+      toast.error(err.message)
       setIsLoading(false)
     })
   }, [])

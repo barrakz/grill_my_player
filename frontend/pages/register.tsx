@@ -10,6 +10,7 @@ import {BASE_BACKEND_URL} from "../constants";
 import {useRouter} from "next/router";
 import {AuthContext} from "../contexts/auth";
 import Link from "next/link";
+import {toast} from "react-toastify";
 
 const Register: NextPage = () => {
   const router = useRouter()
@@ -35,11 +36,14 @@ const Register: NextPage = () => {
         setAccessToken(access)
         setRefreshToken(refresh)
 
+        toast.success('Successful register!')
+
         // Redirect to home page
         router.push('/')
       }).catch(err => {
       console.log(err)
       setError(err.message)
+      toast.error(err.message)
       setIsLoading(false)
     })
   }
@@ -71,7 +75,7 @@ const Register: NextPage = () => {
             </div>
             <div>
               <label htmlFor="password2">Repeat Password: </label>
-              <input type="password2" id='password2' {...register("password2")}/>
+              <input type="password" id='password2' {...register("password2")}/>
             </div>
             <button>Register</button>
           </form>
