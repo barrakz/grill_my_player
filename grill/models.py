@@ -16,8 +16,8 @@ class Player(models.Model):
     def __str__(self):
         return f"{self.name} {self.last_name}"
 
-
-# class meta (unique together validator)
+    class Meta:
+        unique_together = ('name', 'last_name')
 
 
 class Match(models.Model):
