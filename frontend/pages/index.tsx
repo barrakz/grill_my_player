@@ -16,8 +16,8 @@ const Home: NextPage = () => {
       <Header isHome={true} />
 
       <main className={styles.main}>
-        <h1>Grill My Player</h1>
-        <ul>
+        <h1 className={styles.grillTitle}>Grill My Player</h1>
+        <ul className={styles.links}>
           <li>
             <Link href={'/players'}>Players</Link>
           </li>
