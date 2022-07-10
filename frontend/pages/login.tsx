@@ -64,8 +64,8 @@ const Login: NextPage = () => {
         <div>
           <form onSubmit={handleSubmit(onSubmit)}>
             <div style={{padding: '12px'}}>
-              <input type="text" id='username' {...register("username")}/>
               <label htmlFor="username">Name: </label>
+              <input type="text" id='username' {...register("username")}/>
             </div>
             <div>
               <label htmlFor="password">Password: </label>
