@@ -97,6 +97,7 @@ const PlayerDetail: NextPage = (props) => {
                         <div><strong>Rate:</strong> {rating.rate} </div>
                         <div><strong>Comments:</strong> {rating.comment_text} </div>
                         <div>For match: {getMatchName(rating.match)}</div>
+                        <div>By user with id: {rating.user}</div>
                       </li>
                     ))}
                   </ul>
