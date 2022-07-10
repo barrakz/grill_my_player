@@ -10,6 +10,7 @@ import {BASE_BACKEND_URL} from "../constants";
 import {useRouter} from "next/router";
 import {AuthContext} from "../contexts/auth";
 import Link from "next/link";
+import {toast} from "react-toastify";
 
 const Login: NextPage = () => {
   const router = useRouter()
@@ -33,11 +34,14 @@ const Login: NextPage = () => {
         setAccessToken(access)
         setRefreshToken(refresh)
 
+        toast.success('Successful login!')
+
         // Redirect to home page
         router.push('/')
       }).catch(err => {
         console.log(err)
         setError(err.message)
+        toast.error(err.message)
         setIsLoading(false)
       })
   }
