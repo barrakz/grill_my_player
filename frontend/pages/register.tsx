@@ -61,19 +61,19 @@ const Register: NextPage = () => {
       <main className={styles.main}>
         <div>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <div>
+            <div style={{padding: '12px', margin: '4px'}}>
               <label htmlFor="username">Username: </label>
               <input type="text" id='username' {...register("username")}/>
             </div>
-            <div>
+            <div style={{padding: '12px', margin: '4px'}}>
               <label htmlFor="email">Email: </label>
               <input type="email" id='email' {...register("email")}/>
             </div>
-            <div>
+            <div style={{padding: '12px', margin: '4px'}}>
               <label htmlFor="password">Password: </label>
               <input type="password" id='password' {...register("password")}/>
             </div>
-            <div>
+            <div style={{padding: '12px', margin: '4px'}}>
               <label htmlFor="password2">Repeat Password: </label>
               <input type="password" id='password2' {...register("password2")}/>
             </div>
