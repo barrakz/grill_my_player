@@ -1,7 +1,6 @@
-import {AxiosRequestConfig} from "axios";
 import {BASE_REST_URL} from "../constants";
 
-export const defaultOptions: AxiosRequestConfig<any> = {
+export const defaultOptions: any = {
   baseURL: BASE_REST_URL,
   headers: {
     'Content-Type': 'application/json',
@@ -10,7 +9,7 @@ export const defaultOptions: AxiosRequestConfig<any> = {
   responseType: 'json'
 }
 
-export const defaultOptionsWithAutorization = (token: string): AxiosRequestConfig<any> =>  {
+export const defaultOptionsWithAutorization = (token: string): any =>  {
   return {
     ...defaultOptions,
     headers: {
