@@ -63,10 +63,14 @@ const Login: NextPage = () => {
       <main className={styles.main}>
         <div>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <label htmlFor="username">Name: </label>
-            <input type="text" id='username' {...register("username")}/>
-            <label htmlFor="password">Password: </label>
-            <input type="password" id='password' {...register("password")}/>
+            <div style={{padding: '12px'}}>
+              <input type="text" id='username' {...register("username")}/>
+              <label htmlFor="username">Name: </label>
+            </div>
+            <div>
+              <label htmlFor="password">Password: </label>
+              <input type="password" id='password' {...register("password")}/>
+            </div>
             <button>Login</button>
           </form>
         </div>

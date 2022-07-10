@@ -1,4 +1,5 @@
 import Link from "next/link";
+import styles from '../styles/Home.module.scss'
 import {FC, useContext, useState} from "react";
 import {AuthContext} from "../contexts/auth";
 
@@ -18,7 +19,7 @@ const Header: FC<HeaderProps> = (props) => {
   return (
     <header>
       {
-        !isHome && <Link href={'/'}>Go Home</Link>
+        !isHome && <Link href={'/'} className={styles.links}>Go Home</Link>
       }
 
       <div>
