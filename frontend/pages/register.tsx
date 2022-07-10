@@ -75,7 +75,7 @@ const Register: NextPage = () => {
             </div>
             <div>
               <label htmlFor="password2">Repeat Password: </label>
-              <input type="password2" id='password2' {...register("password2")}/>
+              <input type="password" id='password2' {...register("password2")}/>
             </div>
             <button>Register</button>
           </form>

@@ -45,12 +45,12 @@ const PlayersRoot: NextPage = () => {
               <h2>{error}</h2>
             ) : (
               (
-                <ul>
+                <ul className={styles.playersList}>
                   {players.map(player => (
-                    <li key={player.id}>
+                    <li key={player.id} className={styles.player}>
                       <Link href={`/players/${player.id}`}>
                         <div style={{cursor: 'pointer'}}>
-                          {player.name} {player.last_name} - avg rating: <strong>{player.average_rating}</strong>
+                          {player.name} {player.last_name} - avg rating: <strong>{player.average_rating.toFixed(2)}</strong>
                         </div>
                       </Link>
                     </li>

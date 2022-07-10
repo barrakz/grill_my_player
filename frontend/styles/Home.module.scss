@@ -130,4 +130,16 @@
   }
 }
 
+.playersList {
+  list-style: none;
+}
+
+.player {
+  margin: 12px;
+
+  &:hover {
+    color: #0070f3;
+  }
+}
+
 

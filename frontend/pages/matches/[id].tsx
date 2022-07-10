@@ -71,9 +71,11 @@ const MatchDetail: NextPage = (props) => {
 
     axios.post(`/ratings/`, ratingData, defaultOptionsWithAutorization(accessToken))
       .then(res => {
-        console.log(res.data)
+        const ratedPlayer = matchPlayers.find((player: any) => player.id === res.data.player)
+        const filteredPlayers = matchPlayers.filter((player: any) => player.id !== ratedPlayer.id)
+        setMatchPlayers(filteredPlayers)
         setInfo('Nice, you rated!')
-        toast('Nice, you rated!')
+        toast(`Nice, you rated!  ${ratedPlayer.name} ${ratedPlayer.last_name}`)
       }).catch(err => {
         console.log(err)
         setInfo("Something went wrong")
