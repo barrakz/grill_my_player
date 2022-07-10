@@ -4,10 +4,7 @@ from rest_framework.routers import DefaultRouter
 from grill.views import (
     PlayerListView, MatchesListView, RatingsListView, PlayerDetailGenerics, MatchDetailGenerics, RatingDetailGenerics)
 
-
 router = DefaultRouter()
-
-
 
 urlpatterns = [
     path("players/", PlayerListView.as_view(), name="players-list"),
@@ -19,6 +16,4 @@ urlpatterns = [
     path("ratings/", RatingsListView.as_view(), name="ratings"),
     path("rating-detail/<int:pk>", RatingDetailGenerics.as_view(), name="rating-detail"),
 
-
 ]
-
