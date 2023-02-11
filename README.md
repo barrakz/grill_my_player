@@ -1,87 +1,22 @@
+<h1>Grill My Player App</h1>
 
-# Usefull git commands
-Get updated data from branch
-```
-git pull origin master
-```
+<h3>Documentation </h3>
 
-Create a new branch from branch you are on
-```
-git checkout -b new-branch
-```
+Django project for the final project of the "Python from Scratch" bootcamp at the Software Development Academy.
 
-Add ALL files to staging area (before commit)
-```
-git add .
-```
-
-Add specific file to staging area (before commit)
-```
-git add file1
-```
-
-Commit change and write commit message
-```
-git commit -m "This is my new commit message"
-```
-
-Push your commited changes to branch you are on
-```
-git push origin head
-```
-
-# How to, all python django stuff
-To go inside virtual env
-```
-source venv/bin/activate
-```
-
-To install deps
-```
-pip install -r requirements.txt
-```
-
-To save deps
-```
-pip freeze > requirements.txt
-```
+The project was a two-person group project and was completed using the Django framework with the REST framework. The project allows users to rate the performance of each player on the Polish national soccer team after each match. The application calculates the average rating for each player and also allows users to log in and associate their ratings with their account.
 
 
-## Some cmds
+To set up the project, you will need to have Django and the REST framework installed. Clone the project repository and navigate to the project directory in your terminal. Run the following commands to install the necessary dependencies:
 
 
-creating django apps
-```
-python manage.py startapp nameoftheapp
-```
-
-update db with migration
-```
-python manage.py migrate
-```
-
-creating migrations from models
-```
-python manage.py makemigrations
-```
-
-create superuser
-```
-python manage.py createsuperuser
-```
+```pip install -r requirements.txt```
+Next, run the following command to apply the database migrations:
 
 
-## access to objects from terminal
-```
-python3 manage.py shell
-```
+```python manage.py migrate```
+Finally, start the development server by running the following command:
 
 
-# Development
-To run dev server:
-```
-python manage.py runserver
-```
-
-## Create run confgiuration in Pycharm:
-![image](https://user-images.githubusercontent.com/8228270/142775105-2946b706-27f2-4ca9-a867-8a18916bb9f7.png)
+```python manage.py runserver```
+The application should now be running and accessible at ```http://localhost:8000/``` You can log in or create an account using the provided functionality, and you will be able to rate the players and view the calculated average ratings.
